@@ -5,10 +5,10 @@
 #include <iterator>
 #include <vector>
 
-MultiArmedBandit::MultiArmedBandit(uint32_t K, float epsilon)
+MultiArmedBandit::MultiArmedBandit(uint32_t actions, float epsilon)
     : epsilon(epsilon) {
-  Q = std::vector<float>(K, 0);
-  N = std::vector<uint32_t>(K, 0);
+  Q = std::vector<float>(actions, 0);
+  N = std::vector<uint32_t>(actions, 0);
 }
 
 uint32_t MultiArmedBandit::selectAction() {
@@ -18,8 +18,8 @@ uint32_t MultiArmedBandit::selectAction() {
 }
 
 void MultiArmedBandit::updateRewards(uint32_t action, float reward) {
-  N[action] += 1;
-  Q[action] += ((reward - Q[action]) / N[action]);
+  N[action]++;
+  Q[action] += (reward - Q[action]) / N[action];
 }
 
 uint32_t MultiArmedBandit::getBestAction() {

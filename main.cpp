@@ -27,7 +27,7 @@ int main() {
   std::srand(std::time(nullptr));
 
   std::vector<SlotMachine> machines = {};
-  // Generar una máquina tragamoneda por cada acción posible.
+  // Generar una máquina tragamonedas por cada acción posible.
   for (uint32_t i = 0; i < actions; ++i) {
     auto p = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
     machines.push_back(SlotMachine(p));
