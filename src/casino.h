@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <vector>
 
+/// Modela un casino con N máquinas tragamonedas
 class Casino {
 public:
   Casino(uint32_t N) {
@@ -15,6 +16,8 @@ public:
 
   float getWinningChance(uint32_t i) { return machines[i].winningChance; }
 
+  /// Retorna el indice de la máquina más conveniente (mayor posibilidad de
+  /// ganar)
   uint32_t getOptimal() {
     auto comp = [](auto a, auto b) -> bool {
       return a.winningChance < b.winningChance;
@@ -26,6 +29,7 @@ public:
   }
 
 private:
+  /// Modela una máquina tragamonedas
   struct SlotMachine {
     float winningChance;
 

@@ -4,6 +4,7 @@
 #include <functional>
 #include <vector>
 
+/// Implementación de MAB con epsilon-first
 class EpsilonFirstMAB {
 public:
   EpsilonFirstMAB(uint32_t actions, float epsilon) : epsilon(epsilon) {
@@ -34,8 +35,9 @@ private:
     Q[action] += (reward - Q[action]) / N[action];
   }
 
+  /// Selecciona una acción, haciendo `iters` * `epsilon` iteraciones de
+  /// exploración, y el resto de explotación
   uint32_t selectAction(uint32_t i, uint32_t iters) {
-
     return (i < iters * epsilon) ? std::rand() % N.size() : getBestAction();
   }
 };

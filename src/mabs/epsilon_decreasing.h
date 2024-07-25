@@ -3,6 +3,7 @@
 #include <functional>
 #include <vector>
 
+/// Implementación de MAB con epsilon-decreasing
 class EpsilonDecreasingMAB {
 public:
   EpsilonDecreasingMAB(uint32_t actions, float epsilon) : epsilon(epsilon) {
@@ -31,10 +32,12 @@ private:
   void updateRewards(uint32_t action, float reward) {
     N[action]++;
     Q[action] += (reward - Q[action]) / N[action];
+    /// Al actualizar las recompensas, se decrementa epsilon
     epsilon *= 0.9;
   }
 
   uint32_t selectAction() {
+    /// La selección es idéntica a epsilon-greedy
     float r = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
 
     return (r < epsilon) ? std::rand() % N.size() : getBestAction();

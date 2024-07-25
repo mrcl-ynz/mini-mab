@@ -3,6 +3,7 @@
 #include <functional>
 #include <vector>
 
+/// Implementación de MAB con epsilon-greedy
 class EpsilonGreedyMAB {
 public:
   EpsilonGreedyMAB(uint32_t actions, float epsilon) : epsilon(epsilon) {
@@ -33,6 +34,8 @@ private:
     Q[action] += (reward - Q[action]) / N[action];
   }
 
+  /// Selecciona una acción de forma estocástica, epsilon es la tasa de
+  /// exploración
   uint32_t selectAction() {
     float r = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
 
